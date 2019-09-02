@@ -3,6 +3,11 @@ import time  #时间
 import pywifi  #破解wifi
 from pywifi import const  #引用一些定义
 from asyncio.tasks import sleep
+
+path=r"E:\Python Projects\wifi_craking\englis.txt"  #密码库存放位置
+
+wifi_name="CMCC"  #需破解的wifi名称
+
 class PoJie():
     def __init__(self,path):
         self.file=open(path,"r",errors="ignore")
@@ -37,7 +42,7 @@ class PoJie():
     def test_connect(self,findStr):#测试链接
  
         profile = pywifi.Profile()  #创建wifi链接文件
-        profile.ssid ="   b" #wifi名称
+        profile.ssid = wifi_name #wifi名称
         profile.auth = const.AUTH_ALG_OPEN  #网卡的开放，
         profile.akm.append(const.AKM_TYPE_WPA2PSK)#wifi加密算法
         profile.cipher = const.CIPHER_TYPE_CCMP    #加密单元
@@ -63,6 +68,6 @@ class PoJie():
     def __del__(self):
         self.file.close()
  
-path=r"E:\Python Projects\wifi_craking\english.txt"
+
 start=PoJie(path)
 start.readPassWord()
